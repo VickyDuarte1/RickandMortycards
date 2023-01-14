@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import './App.css'
+import Cards from './components/Cards.jsx'
+import NavBar from './components/NavBar'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App () {
+  const [characters, setCharacters]= useState([])
+function onSearch(id){ 
+  fetch(`http://rickandmortyapi.com/api/character/${id}`)
+  .then((response)=> response.json())
+  .then((data)=>{
+    if (data.name){
+      let exist= characters.find((e)=>e.id === data.id )
+      if(exist){
+        alert ('ese personaje ya esta cargado');
+      }else{
+      setCharacters((oldChars)=>[...oldChars,data]);}
+    } else{
+      window.alert('No hay personajes con ese ID');
+    }
+  });
 }
 
-export default App;
+function onClose(id){
+  setCharacters((char)=>{
+    return char.filter( (e)=> e.id !== id)
+  })
+}
+
+  return (
+    <div className='App' style={{ padding: '25px' }}>
+      
+      <div>
+        <NavBar
+          onSearch={onSearch}
+        />
+      </div>
+      <hr />
+      <div>
+        <Cards
+          characters={characters} onClose={onClose}
+        />
+      </div>
+      <hr />
+      
+    </div>
+  )
+}
+
+export default App

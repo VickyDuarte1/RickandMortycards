@@ -1,0 +1,8 @@
+.nav{
+    background-color: rgba(222, 173, 239, 0.32);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 5px;
+    border: 2px solid white;
+}
