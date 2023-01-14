@@ -1,7 +1,12 @@
-import { useState } from 'react'
-import './App.css'
-import Cards from './components/Cards.jsx'
-import NavBar from './components/NavBar'
+import { useState } from 'react';
+import './App.css';
+import Cards from './components/Cards.jsx';
+import Login from './components/Login.jsx';
+import NavBar from './components/NavBar';
+import About from './components/About.jsx';
+import Detail from './components/Detail';
+import { Routes, Route } from 'react-router-dom';
+
 
 function App () {
   const [characters, setCharacters]= useState([])
@@ -35,13 +40,13 @@ function onClose(id){
           onSearch={onSearch}
         />
       </div>
-      <hr />
-      <div>
-        <Cards
-          characters={characters} onClose={onClose}
-        />
-      </div>
-      <hr />
+
+      <Routes>
+        <Route path='/' element={<Login/>}></Route>
+        <Route path='/home' element={<Cards characters={characters} onClose={onClose}/>}></Route>      
+        <Route path='/about' element={<About/>}></Route>
+        <Route path='/detail/:detailId' element={<Detail/>}></Route>
+      </Routes>
       
     </div>
   )
