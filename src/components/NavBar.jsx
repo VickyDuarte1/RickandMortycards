@@ -8,17 +8,25 @@ export default function NavBar(props) {
         <div className={styles.nav}>
                 <div>
                     <Link to='/home'>
-                    <button> Home</button>
+                    <button>Home</button>
                     </Link>
                 </div>
                 <div>
                     <Link to= '/about'>
-                    <button> About</button>
+                    <button>About</button>
+                    </Link>
+                </div>
+                <div>
+                    <Link to= '/favorites'>
+                    <button>Favorites</button>
                     </Link>
                 </div>
                 <div>
                    <SearchBar onSearch={props.onSearch} />
                 </div>
+                <Link to='/'>
+                    <button onClick={props.logout}>Log Out</button>
+                </Link>
         </div>
     )
     
