@@ -10,6 +10,7 @@ export default function Cards(props) {
          return (
             <div className= {styles.card}>
          <Card
+         key={c.id}
          id={c.id}
          name={c.name}
          species={c.species}

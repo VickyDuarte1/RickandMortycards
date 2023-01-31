@@ -2,7 +2,7 @@ import style from './card.module.css';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import {useDispatch, useSelector } from 'react-redux';
-import {addFavorites, deleteFavorites} from '../Redux/actions';
+import {addFavorites, deleteFavorites} from '../../src/Redux/actions';
 import { useEffect } from 'react';
 
 export default function Card(props) {
@@ -11,19 +11,19 @@ const [itsFav, setItsFav] = useState(false);
 const dispatch= useDispatch();
 const myFavorites = useSelector((s)=>s.myFavorites)//guarda el estado de la propiedad
 
-function handleFavorite(id){
+function handleFavorite(ch){
    if(itsFav){
       setItsFav(false)
-      dispatch(deleteFavorites(id))
+      dispatch(deleteFavorites(ch.id))
    } else {
       setItsFav(true)
-      dispatch(addFavorites(id))
+      dispatch(addFavorites(ch))
    }
 }
 
 useEffect(() => {
-   myFavorites.forEach((id) => {
-   if(id === props.id){
+   myFavorites.forEach((ch) => {
+   if(ch.id === props.id){
       setItsFav(true);
    }      
    });
@@ -33,8 +33,8 @@ useEffect(() => {
    return (
       <div className={style.card}>
 {itsFav ? (
-   <button onClick={()=>handleFavorite(props.id)}> ❤️ </button>
-) :( <button onClick={()=>handleFavorite(props.id)}> 🤍 </button>)}
+   <button onClick={()=>handleFavorite(props)}> ❤️ </button>
+) :( <button onClick={()=>handleFavorite(props)}> 🤍 </button>)}
 
 
          <button className='btn' onClick={()=> props.onClose()}>X</button> {//cada vez que se ejecute el onlick quiero que se ejecute el onClose}

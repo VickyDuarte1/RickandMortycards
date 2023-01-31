@@ -1,7 +1,8 @@
-import {ADD_FAVORITES, DELETE_FAVORITES} from './action_type';
+import {ADD_FAVORITES, DELETE_FAVORITES, FILTER, ORDER, RESET} from './action_type';
 
 const initialState = {
-    myFavorites:[]
+    myFavorites:[],
+    myFavoritesCopy: []//hago una copia para poder filtrar sin modificar mi array estado original con los char cargados
 };
 
 export default function rootReducer(state= initialState, {type, payload}){
@@ -9,16 +10,50 @@ export default function rootReducer(state= initialState, {type, payload}){
     case ADD_FAVORITES:
     return {
         ...state,
-        myFavorites: [...state.myFavorites, payload]
+        myFavorites: [...state.myFavorites, payload],
+        myFavoritesCopy:[...state.myFavoritesCopy, payload]
     };
+
     case DELETE_FAVORITES:
-   const filtered = state.myFavorites.filter((id)=>{
-    return id !== payload;
+   const filtered = state.myFavorites.filter((ch)=>{
+    return ch.id !== payload;
    })
     return {
         ...state,
-        myFavorites: filtered
+        myFavorites: filtered,
+        myFavoritesCopy: filtered
     };
+
+    case FILTER:
+        const filterCopy = [...state.myFavorites]
+        const filter = filterCopy.filter((ch)=>ch.gender === payload)
+        return {
+            ...state,
+            myFavorites: filter
+        };
+
+case ORDER: 
+const orderCopy= [...state.myFavoritesCopy];
+const order = orderCopy.sort((a,b)=> {
+    if(a.id> b.id){
+        return 'Ascendente'=== payload ? 1 : -1;
+    }
+    if(a.id<b.id){
+        return 'Descendente' === payload ? 1: -1;
+    }
+    return 0;
+});
+
+return {
+    ...state,
+    myFavorites: order,
+};
+
+case RESET:
+    return{
+        ...state,
+        myFavorites: [...state.myFavoritesCopy],
+    }
 
     default:
         return state;
