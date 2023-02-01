@@ -14,4 +14,4 @@ router.post('/fav', postFav);
 router.delete('/fav/:id', deleteFavId);
 
 
-module.exports = router
+module.exports = router;

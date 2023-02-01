@@ -4,4 +4,4 @@ const characters = require('./characters');
 
 router.use('/rickandmorty', characters)//middleware para modularizar
 
-module.exports = router
+module.exports = router;

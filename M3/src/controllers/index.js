@@ -25,8 +25,9 @@ axios(`http://rickandmortyapi.com/api/character/${id}`)
 
 const getDetailId = function (req, res){
     const { detailId } = req.params
+    
     //buscar y guardar character//cuando no se pone nada por defecto es un get en axios
-    axios(`http://rickandmortyapi.com/api/character/${id}`)
+    axios(`http://rickandmortyapi.com/api/character/${detailId}`)
         .then((data)=>data.data)//retorna la data en si, no el objeto con la propiedad data
         .then((data) => {
             const character = { 
@@ -70,5 +71,6 @@ module.exports = {
         getDetailId, 
         getFav, 
         postFav, 
-        deleteFavId
+        deleteFavId,
+        
           }
