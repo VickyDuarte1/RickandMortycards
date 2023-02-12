@@ -1,10 +1,10 @@
 const axios = require('axios');
-var fav = []//base de datos
+var fav = [] //base de datos
 
 const getCharacterId = function (req, res){
     const { id } = req.params
 //buscar y guardar character//cuando no se pone nada por defecto es un get en axios
-axios(`http://rickandmortyapi.com/api/character/${id}`)
+    axios(`http://rickandmortyapi.com/api/character/${id}`)
     .then((data)=>data.data)//retorna la data en si, no el objeto con la propiedad data
     .then((data) => {
         const character = { 
@@ -60,6 +60,7 @@ const getDetailId = function (req, res){
         const { id } = req.params
         const character = fav.find(c=>c.id === Number(id))
         if(character){
+            fav = fav.filter(e=>e.id !==Number(id))
             res.status(200).end(JSON.stringify(character))
         }else{
 req.status(400).end('character no se encuentra')
