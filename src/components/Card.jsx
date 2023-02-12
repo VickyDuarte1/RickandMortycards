@@ -9,7 +9,7 @@ export default function Card(props) {
 
 const [itsFav, setItsFav] = useState(false);
 const dispatch= useDispatch();
-const myFavorites = useSelector((s)=>s.myFavorites)//guarda el estado de la propiedad
+const myFavorites = useSelector(s =>s.myFavorites )//guarda el estado de la propiedad
 
 function handleFavorite(ch){
    if(itsFav){
@@ -35,7 +35,6 @@ useEffect(() => {
 {itsFav ? (
    <button onClick={()=>handleFavorite(props)}> ❤️ </button>
 ) :( <button onClick={()=>handleFavorite(props)}> 🤍 </button>)}
-
 
          <button className='btn' onClick={()=> props.onClose()}>X</button> {//cada vez que se ejecute el onlick quiero que se ejecute el onClose}
 }

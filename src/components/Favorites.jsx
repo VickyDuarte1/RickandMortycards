@@ -47,11 +47,10 @@ if (name==='order'){
     { //destructurin reutilizando el componente card para pasar lo que este en myfavorites
     myFavorites?.map((c)=>{
        return (
-          
-        
-          
+
           <div>
        <Card
+       key={c.key}
        id={c.id}
        name={c.name}
        species={c.species}
