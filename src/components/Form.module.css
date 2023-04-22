@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+    /* font-family: 'Orbitron', sans-serif; */
+
+.login1{
+    background: linear-gradient(0deg, rgba(143,24,179,1) 0%, rgba(255,35,217,1) 100%);
+    border-radius: 5px;
+    color: aliceblue;
+    font-weight: 600;
+    padding: 3px;
+    cursor: pointer;
+    margin: 5px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.login1:hover{
+    background: linear-gradient(0deg, rgba(255,35,217,1) 0%, rgba(143,24,179,1) 100%);
+    box-shadow: 0 0 20px 2px rgb(255, 245, 102);
+}
+
+.formryc{
+    height: 300px;
+    width: 300px;
+    background-image: url('https://tenor.com/es/view/portal-rick-and-morty-gif-23586904') ;
+}

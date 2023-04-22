@@ -8,24 +8,24 @@ export default function NavBar(props) {
         <div className={styles.nav}>
                 <div>
                     <Link to='/home'>
-                    <button>Home</button>
+                    <button className={styles.homebtn} >Home</button>
                     </Link>
                 </div>
                 <div>
                     <Link to= '/about'>
-                    <button>About</button>
+                    <button className={styles.aboutbtn} >About</button>
                     </Link>
                 </div>
                 <div>
                     <Link to= '/favorites'>
-                    <button>Favorites</button>
+                    <button className={styles.favbtn}  >Favorites</button>
                     </Link>
                 </div>
                 <div>
                    <SearchBar onSearch={props.onSearch} />
                 </div>
                 <Link to='/'>
-                    <button onClick={props.logout}>Log Out</button>
+                    <button  className={styles.logoutbtn} onClick={props.logout}>Log Out</button>
                 </Link>
         </div>
     )

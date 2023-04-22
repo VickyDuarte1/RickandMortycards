@@ -2,7 +2,9 @@ import {ADD_FAVORITES, DELETE_FAVORITES, FILTER, ORDER, RESET} from './action_ty
 
 const initialState = {
     myFavorites:[],
-    myFavoritesCopy: []//hago una copia para poder filtrar sin modificar mi array estado original con los char cargados
+    myFavoritesCopy: [],//hago una copia para poder filtrar sin modificar mi array estado original con los char cargados
+    genderFilter: null,
+    order: null,
 };
 
 export default function rootReducer(state= initialState, {type, payload}){
@@ -26,35 +28,59 @@ export default function rootReducer(state= initialState, {type, payload}){
 
     case FILTER:
         const filterCopy = [...state.myFavorites]
-        const filter = filterCopy.filter((ch)=>ch.gender === payload)
+        
+        console.log(filterCopy);
+        const filter = payload ? filterCopy.filter((ch) => ch.gender === payload) : filterCopy;
+        console.log(filter);
         return {
             ...state,
-            myFavorites: filter
+            myFavoritesCopy: filter
+            
         };
 
-case ORDER: 
-const orderCopy= [...state.myFavoritesCopy];
-const order = orderCopy.sort((a,b)=> {
-    if(a.id> b.id){
-        return 'Ascendente'=== payload ? 1 : -1;
-    }
-    if(a.id<b.id){
-        return 'Descendente' === payload ? 1: -1;
-    }
-    return 0;
-});
+// case ORDER: 
+// const orderCopy= [...state.myFavoritesCopy];
+// const order = orderCopy.sort((a,b)=> {
+//     if(a.id> b.id){
+//         return 'Ascendente'=== payload ? 1 : -1;
+//     }
+//     if(a.id<b.id){
+//         return 'Descendente' === payload ? 1: -1;
+//     }
+//     return 0;
+// });
 
+// return {
+//     ...state,
+//     myFavorites: order,
+// };
+
+case ORDER: 
+const copy = [...state.myFavoritesCopy];
+if ( payload === 'Ascendente') {
+  copy.sort((a, b) => a.name.localeCompare(b.name));
+} else if ( payload === 'Descendente') {
+  copy.sort((a, b) => b.name.localeCompare(a.name));
+}
 return {
-    ...state,
-    myFavorites: order,
+  ...state,
+  myFavoritesCopy: copy,
+  order:  payload,
 };
 
 case RESET:
+  console.log(state.myFavorites);
     return{
         ...state,
-        myFavorites: [...state.myFavoritesCopy],
+        myFavoritesCopy: [...state.myFavorites],
+        myFavorites:[...state.myFavorites],
+        genderFilter: null,
+        order: null,
+
     }
 
     default:
         return state;
 }}
+
+

@@ -8,8 +8,9 @@ export default function Cards(props) {
       { //destructurin
       characters.map((c)=>{
          return (
-            <div className= {styles.card}>
+            // <div className= {styles.card}  >
          <Card
+         className= {styles.card}
          key={c.id}
          id={c.id}
          name={c.name}
@@ -18,7 +19,7 @@ export default function Cards(props) {
          image={c.image}
          onClose= {()=>props.onClose(c.id)}
       />
-      </div>
+      // </div>
       )
       //por cada character una card
       })

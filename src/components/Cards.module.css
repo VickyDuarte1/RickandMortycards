@@ -1,8 +1,7 @@
 .Cards{
     display: flex;
-    padding: 15px;
-    
-}
-.card{
-    padding: 15px;    
+    padding: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  
 }

@@ -31,12 +31,19 @@ export const filterCards = (status)=> {
         payload: status}
 }
 
-export const orderCards = (id)=>{
-    return {
-        type: ORDER,
-        payload: id,
-    }
-}
+// export const orderCards = (id)=>{
+//     return {
+//         type: ORDER,
+//         payload: id,
+//     }
+// }
+
+
+export const orderCards = (payload, genderFilter) => ({
+    type: ORDER,
+    payload: payload,
+    genderFilter: genderFilter
+});
 
 export const reset = ()=>{
     return {

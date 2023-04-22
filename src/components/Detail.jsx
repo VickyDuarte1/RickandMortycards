@@ -21,15 +21,17 @@ return setCharacter({});
 }, [detailId]);
 
  return (
+    <div className={styles.align}>
     <div className={styles.detail}>
         <div className={styles.txt}>
-        <h1>{character.name}</h1>
-        <h1>{character.status}</h1>
-        <h1>{character.species}</h1>
-        <h1>{character.gender}</h1>
-        <h1>{character.origin?.name}</h1>
+        <h1> Name: {character.name}</h1>
+        <h1>Status: {character.status}</h1>
+        <h1>Specie: {character.species}</h1>
+        <h1>Gender: {character.gender}</h1>
+        <h1>Origin: {character.origin?.name}</h1>
         </div>
-<img src={character.image} alt={character.name}/>
+<img src={character.image} className={styles.imagenDetail} alt={character.name}/>
+    </div>
     </div>
   )
 }

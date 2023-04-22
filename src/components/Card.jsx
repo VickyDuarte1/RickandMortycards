@@ -31,13 +31,15 @@ useEffect(() => {
 
 
    return (
-      <div className={style.card}>
+      <div className={style.card} key={props.id} >
+         <div className={style.btns}>
 {itsFav ? (
-   <button onClick={()=>handleFavorite(props)}> ❤️ </button>
-) :( <button onClick={()=>handleFavorite(props)}> 🤍 </button>)}
+   <button className={style.fav} onClick={()=>handleFavorite(props)}> ❤️ </button>
+) :( <button className={style.fav} onClick={()=>handleFavorite(props)}> 🤍 </button>)}
 
-         <button className='btn' onClick={()=> props.onClose()}>X</button> {//cada vez que se ejecute el onlick quiero que se ejecute el onClose}
+         <button className={style.btn} onClick={()=> props.onClose()}>X</button> {//cada vez que se ejecute el onlick quiero que se ejecute el onClose}
 }
+</div>
          <Link to={`/detail/${props.id}`}>
          <h2>{props.name}</h2>
          <p>{props.species}</p>
