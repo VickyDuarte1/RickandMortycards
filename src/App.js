@@ -10,8 +10,8 @@ import Favorites from './components/Favorites';
 
 function App () {
 const [access, setAccess] = useState(false)
-const username= '33b@soyhenry.com';
-const password = '33b@soyhenry.com';
+const username= 'myuser@soyhenry.com';
+const password = 'myuser@soyhenry.com';
 const navigate = useNavigate();
 
 function login(userData){
